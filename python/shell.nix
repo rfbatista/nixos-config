@@ -4,7 +4,7 @@ let
   pythonPackages = python3Packages;
 in pkgs.mkShell rec {
   name = "impurePythonEnv";
-  venvDir = "./.venv";
+  venvDir = "./.env";
   buildInputs = [
     # A Python interpreter including the 'venv' module is required to bootstrap
     # the environment.
@@ -37,7 +37,7 @@ in pkgs.mkShell rec {
   # Run this command, only after creating the virtual environment
   postVenvCreation = ''
     unset SOURCE_DATE_EPOCH
-    pip install -r requirements.txt
+    pipenv install -r requirements.txt
     source ./env/bin/activate
   '';
 
