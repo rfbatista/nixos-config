@@ -22,6 +22,9 @@ in pkgs.mkShell rec {
     pythonPackages.pandas
     pythonPackages.requests
 
+    pythonPackages.jupyterlab
+    nodejs
+    gcc-unwrapped.lib
     # In this particular example, in order to compile any binary extensions they may
     # require, the Python modules listed in the hypothetical requirements.txt need
     # the following packages to be installed locally:
@@ -38,7 +41,7 @@ in pkgs.mkShell rec {
   postVenvCreation = ''
     unset SOURCE_DATE_EPOCH
     pipenv install -r requirements.txt
-    source ./env/bin/activate
+    pipenv shell
   '';
 
   # Now we can execute any commands within the virtual environment.
